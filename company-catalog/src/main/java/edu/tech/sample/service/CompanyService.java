@@ -1,14 +1,17 @@
 package edu.tech.sample.service;
 
 
-import edu.tech.sample.domain.Company;
+import edu.tech.sample.dto.CompanyDto;
+import edu.tech.sample.entity.Company;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface CompanyService {
-    Company findOne(Long id);
+    CompanyDto findOne(Long id);
 
-    Page<Company> findAll(Pageable pageable);
+    Page<CompanyDto> findAll(Pageable pageable);
 
-    Company save(Company company);
+    Long save(CompanyDto company);
+
+    void delete(Long id);
 }

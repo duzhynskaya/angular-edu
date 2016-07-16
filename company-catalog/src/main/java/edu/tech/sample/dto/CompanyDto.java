@@ -1,29 +1,22 @@
-package edu.tech.sample.domain;
+package edu.tech.sample.dto;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
-@Entity
-public class Company implements Serializable {
-    private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue
+public class CompanyDto {
     private Long id;
 
-    @Column(nullable = false)
+    @NotNull
     private String name;
 
-    @Column
     private String info;
 
-    @Column
     private String address;
 
-    @Column
     private String phone;
 
-    @Column
+    @Min(0)
     private Integer size;
 
     public Long getId() {

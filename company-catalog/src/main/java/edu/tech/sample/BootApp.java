@@ -8,8 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Entry point to the application.
  */
 @SpringBootApplication
-public class App {
+public class BootApp {
+
     public static void main( String[] args ) {
-        SpringApplication.run(App.class, args);
+        SpringApplication.run(BootApp.class, args);
     }
 }
