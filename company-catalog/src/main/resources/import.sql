@@ -1,4 +1,4 @@
-insert into company (id, address, info, name, phone, size) values (default, '?', 'Some info1', 'google', '?', 10);
-insert into company (id, address, info, name, phone, size) values (default, '?', 'Some info2', 'ms', '?', 10);
-insert into company (id, address, info, name, phone, size) values (default, '?', 'Some info3', 'tesla motors', '?', 10);
-insert into company (id, address, info, name, phone, size) values (default, '?', 'Some info4', 'yahoo', '?', 10);
+insert into company (id, address, description, name, phone, size) values (default, '1600 Amphitheatre Parkway Mountain View CA 94043', 'Google’s mission is to organize the world’s information and make it universally accessible and useful.', 'Google Inc.', '+1 650-253-0000', 51100);
+insert into company (id, address, description, name, phone, size) values (default, '?', 'Some info2', 'ms', '?', 10);
+insert into company (id, address, description, name, phone, size) values (default, '?', 'Some info3', 'tesla motors', '?', 10);
+insert into company (id, address, description, name, phone, size) values (default, '?', 'Some info4', 'yahoo', '?', 10);

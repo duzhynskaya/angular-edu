@@ -3,15 +3,18 @@ package edu.tech.sample.dao;
 import edu.tech.sample.entity.Company;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.stream.Stream;
 
 
 @Repository
 public interface CompanyRepository extends CrudRepository<Company, Long> {
-    Page<Company> findAll(Pageable pageable);
+    @Query("select c from Company c")
+    Stream<Company> findAllAsStream();
 
     /**
      * Finds a company by id.
@@ -26,5 +29,4 @@ public interface CompanyRepository extends CrudRepository<Company, Long> {
      * @return an updated managed instance
      */
     Company save(Company company);
-
 }

@@ -18,7 +18,7 @@ public class Company implements Serializable {
     private String name;
 
     @Column
-    private String info;
+    private String description;
 
     @Column
     private String address;
@@ -46,12 +46,12 @@ public class Company implements Serializable {
         this.name = name;
     }
 
-    public String getInfo() {
-        return info;
+    public String getDescription() {
+        return description;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getAddress() {

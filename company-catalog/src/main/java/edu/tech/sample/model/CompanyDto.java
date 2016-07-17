@@ -1,4 +1,4 @@
-package edu.tech.sample.dto;
+package edu.tech.sample.model;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -10,7 +10,7 @@ public class CompanyDto {
     @NotNull
     private String name;
 
-    private String info;
+    private String description;
 
     private String address;
 
@@ -35,12 +35,12 @@ public class CompanyDto {
         this.name = name;
     }
 
-    public String getInfo() {
-        return info;
+    public String getDescription() {
+        return description;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getAddress() {

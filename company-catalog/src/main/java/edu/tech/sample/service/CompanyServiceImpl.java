@@ -1,14 +1,15 @@
 package edu.tech.sample.service;
 
 import edu.tech.sample.dao.CompanyRepository;
-import edu.tech.sample.dto.CompanyDto;
+import edu.tech.sample.model.CompanyDto;
 import edu.tech.sample.entity.Company;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
@@ -22,14 +23,14 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     /**
-     * Finds all companies for a requested page.
-     * @param pageable (page number starts from 0)
+     * Finds all companies.
      * @return companies' DTOs
      */
     @Override
-    public Page<CompanyDto> findAll(Pageable pageable) {
-        return companyRepository.findAll(pageable).
-                map((e) -> dozerBean.map(e, CompanyDto.class));
+    public List<CompanyDto> findAll() {
+        return companyRepository.findAllAsStream().
+                map((e) -> dozerBean.map(e, CompanyDto.class)).
+                collect(Collectors.toList());
     }
 
     /**
@@ -40,7 +41,7 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public CompanyDto findOne(Long id) {
         Company company = companyRepository.findById(id).
-                                            orElseThrow(() -> new CompanyNotFoundException(id));
+                orElseThrow(() -> new CompanyNotFoundException(id));
 
         return dozerBean.map(company, CompanyDto.class);
     }

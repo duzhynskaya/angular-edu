@@ -1,6 +1,6 @@
-package edu.tech.sample.web;
+package edu.tech.sample.controller;
 
-import edu.tech.sample.dto.CompanyDto;
+import edu.tech.sample.model.CompanyDto;
 import edu.tech.sample.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @RestController
@@ -19,19 +20,19 @@ public class CompanyRestController {
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public Page<CompanyDto> list() {
-        return companyService.findAll(new PageRequest(0, 100));
+    public List<CompanyDto> listAll() {
+        return companyService.findAll();
     }
 
 
     @RequestMapping(value = "/{companyId}", method = RequestMethod.GET)
-    public CompanyDto get(@PathVariable Long companyId) {
+    public CompanyDto getCompany(@PathVariable Long companyId) {
         return companyService.findOne(companyId);
     }
 
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public Long add(@RequestBody @Valid CompanyDto company, BindingResult result) {
+    @RequestMapping(method = RequestMethod.POST)
+    public Long addCompany(@RequestBody @Valid CompanyDto company, BindingResult result) {
         if (result.hasErrors()) {
             return null;
         }
@@ -39,8 +40,8 @@ public class CompanyRestController {
     }
 
 
-    @RequestMapping(value = "/edit/{companyId}", method = RequestMethod.PUT)
-    public Long edit(@PathVariable Long companyId,
+    @RequestMapping(value = "/{companyId}", method = RequestMethod.PUT)
+    public Long editCompany(@PathVariable Long companyId,
                      @RequestBody @Valid CompanyDto company, BindingResult result) {
         if (result.hasErrors()) {
             return null;
@@ -49,8 +50,8 @@ public class CompanyRestController {
     }
 
 
-    @RequestMapping(value = "/delete/{companyId}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable Long companyId) {
+    @RequestMapping(value = "/{companyId}", method = RequestMethod.DELETE)
+    public void deleteCompany(@PathVariable Long companyId) {
         companyService.delete(companyId);
     }
 
