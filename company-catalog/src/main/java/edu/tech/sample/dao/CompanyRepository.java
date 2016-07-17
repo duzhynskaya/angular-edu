@@ -16,6 +16,8 @@ public interface CompanyRepository extends CrudRepository<Company, Long> {
     @Query("select c from Company c")
     Stream<Company> findAllAsStream();
 
+    Page<Company> findAll(Pageable pageable);
+
     /**
      * Finds a company by id.
      * @return a managed instance

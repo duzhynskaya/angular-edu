@@ -5,6 +5,8 @@ import edu.tech.sample.model.CompanyDto;
 import edu.tech.sample.entity.Company;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -31,6 +33,16 @@ public class CompanyServiceImpl implements CompanyService {
         return companyRepository.findAllAsStream().
                 map((e) -> dozerBean.map(e, CompanyDto.class)).
                 collect(Collectors.toList());
+    }
+
+    /**
+     * Finds all companies on the requested page.
+     * @return companies' DTOs
+     */
+    @Override
+    public Page<CompanyDto> findAll(Pageable pageable) {
+        return companyRepository.findAll(pageable).
+                map((e) -> dozerBean.map(e, CompanyDto.class));
     }
 
     /**

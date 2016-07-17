@@ -1,4 +1,4 @@
 insert into company (id, address, description, name, phone, size) values (default, '1600 Amphitheatre Parkway Mountain View CA 94043', 'Google’s mission is to organize the world’s information and make it universally accessible and useful.', 'Google Inc.', '+1 650-253-0000', 51100);
-insert into company (id, address, description, name, phone, size) values (default, '?', 'Some info2', 'ms', '?', 10);
-insert into company (id, address, description, name, phone, size) values (default, '?', 'Some info3', 'tesla motors', '?', 10);
-insert into company (id, address, description, name, phone, size) values (default, '?', 'Some info4', 'yahoo', '?', 10);
+insert into company (id, address, description, name, phone, size) values (default, 'Hawthorne, California, U.S. 33.9207°N 118.3278°W', 'SpaceX designs, manufactures and launches advanced rockets and spacecraft.', 'SpaceX', '(310) 355-0559', 5000);
+insert into company (id, address, description, name, phone, size) values (default, 'Seattle, Washington, U.S.', 'The largest Internet-based retailer in the United States and world by total sales and market capitalization.', 'Amazon.com, Inc', '810 1 206-266-2992', 230800);
+insert into company (id, address, description, name, phone, size) values (default, null, 'Mainsoft LLC - professional software development for medium and small business support.', 'Mainsoft LLC', null, 100);

@@ -1,10 +1,12 @@
 package edu.tech.sample.controller;
 
+import edu.tech.sample.entity.Company;
 import edu.tech.sample.model.CompanyDto;
 import edu.tech.sample.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,10 +22,9 @@ public class CompanyRestController {
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<CompanyDto> listAll() {
-        return companyService.findAll();
+    public Page<CompanyDto> listAll(Pageable pageable) {
+        return companyService.findAll(pageable);
     }
-
 
     @RequestMapping(value = "/{companyId}", method = RequestMethod.GET)
     public CompanyDto getCompany(@PathVariable Long companyId) {

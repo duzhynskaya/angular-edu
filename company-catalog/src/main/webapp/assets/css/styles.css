@@ -1,0 +1,18 @@
+.item.active h3 {
+    color: deeppink;
+}
+
+.item hr {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.has-error {
+    color: red;
+    font-style: italic;
+}
+
+#catalog-pager {
+    margin-top: 15px;
+    margin-bottom: -15px;
+}

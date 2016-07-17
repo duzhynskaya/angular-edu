@@ -12,6 +12,8 @@ public interface CompanyService {
 
     List<CompanyDto> findAll();
 
+    Page<CompanyDto> findAll(Pageable pageable);
+
     Long save(CompanyDto company);
 
     void delete(Long id);
