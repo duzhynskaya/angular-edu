@@ -38,11 +38,11 @@ App.controller('CompanyController', ['$scope', '$sce', 'CompanyService', functio
         deleteItem(id);
     };
 
-    self.reset = resetForm;
     var resetForm = function () {
         resetActiveItem();
         $scope.detailsForm.$setPristine();
     };
+    self.reset = resetForm;
 
     // initialization
 
