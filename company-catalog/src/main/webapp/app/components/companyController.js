@@ -9,10 +9,12 @@ App.controller('CompanyController', ['$scope', '$sce', 'CompanyService', functio
     self.pager = {
         totalItems: 0,
         currentPage : 1,
-        onPageChanged: refreshList
+        onPageChanged: refreshPage
     };
 
-    self.alert = {};
+    self.alert = {
+        show: false
+    };
 
     // public methods
 
@@ -36,7 +38,8 @@ App.controller('CompanyController', ['$scope', '$sce', 'CompanyService', functio
         deleteItem(id);
     };
 
-    self.reset = function () {
+    self.reset = resetForm;
+    var resetForm = function () {
         resetActiveItem();
         $scope.detailsForm.$setPristine();
     };
@@ -44,7 +47,7 @@ App.controller('CompanyController', ['$scope', '$sce', 'CompanyService', functio
     // initialization
 
     resetActiveItem();
-    refreshList();
+    refreshPage();
 
     // private methods
 
@@ -52,7 +55,7 @@ App.controller('CompanyController', ['$scope', '$sce', 'CompanyService', functio
         self.activeItem = {id: null, name: '', description: '', address: '', phone: '', size: null};
     }
 
-    function refreshList() {
+    function refreshPage() {
         showItems(self.pager.currentPage);
     }
 
@@ -66,29 +69,23 @@ App.controller('CompanyController', ['$scope', '$sce', 'CompanyService', functio
 
     function createItem(item) {
         CompanyService.save(item).$promise
-            .then(
-                function(result) {
-                    // mark the recently added item as an active in the master list
-                    self.activeItem = item;
-                    self.activeItem.id = result[0];
-
-                    showInfoMsg('Company <strong>'+ item.name +'</strong> was successfully added to the catalog.');
-
-                    refreshList();
-                }
-            )
+            .then(function(result) {
+                showInfoMsg('Company <strong class="lead">'+ item.name +'</strong> was successfully added to the catalog.');
+                resetForm();
+                refreshPage();
+            })
             .catch(showErrorMsg);
     }
 
     function updateItem(item) {
         CompanyService.update({companyId: item.id}, item).$promise
-            .then(refreshList)
+            .then(refreshPage)
             .catch(showErrorMsg);
     }
 
     function deleteItem(itemId) {
         CompanyService.delete({companyId: itemId}).$promise
-            .then(refreshList)
+            .then(refreshPage)
             .catch(showErrorMsg);
     }
 
@@ -102,6 +99,6 @@ App.controller('CompanyController', ['$scope', '$sce', 'CompanyService', functio
     function showErrorMsg(reason) {
         self.alert.show = true;
         self.alert.class = 'alert-danger';
-        self.alert.msg = $sce.trustAsHtml('Oops. Something went wrong. Please try again later.');
+        self.alert.msg = $sce.trustAsHtml('Oops. Something went wrong.');
     }
 }]);

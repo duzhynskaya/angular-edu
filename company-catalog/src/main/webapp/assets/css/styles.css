@@ -2,6 +2,10 @@
     color: deeppink;
 }
 
+.item {
+    cursor: pointer;
+}
+
 .item hr {
     margin-top: 0;
     margin-bottom: 0;

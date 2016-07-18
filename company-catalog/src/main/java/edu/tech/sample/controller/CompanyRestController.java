@@ -1,17 +1,13 @@
 package edu.tech.sample.controller;
 
-import edu.tech.sample.entity.Company;
 import edu.tech.sample.model.CompanyDto;
 import edu.tech.sample.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 
 @RestController
@@ -31,25 +27,15 @@ public class CompanyRestController {
         return companyService.findOne(companyId);
     }
 
-
     @RequestMapping(method = RequestMethod.POST)
-    public Long addCompany(@RequestBody @Valid CompanyDto company, BindingResult result) {
-        if (result.hasErrors()) {
-            return null;
-        }
+    public Long addCompany(@RequestBody @Valid CompanyDto company) {
         return companyService.save(company);
     }
-
 
     @RequestMapping(value = "/{companyId}", method = RequestMethod.PUT)
-    public Long editCompany(@PathVariable Long companyId,
-                     @RequestBody @Valid CompanyDto company, BindingResult result) {
-        if (result.hasErrors()) {
-            return null;
-        }
+    public Long editCompany(@PathVariable Long companyId, @RequestBody @Valid CompanyDto company) {
         return companyService.save(company);
     }
-
 
     @RequestMapping(value = "/{companyId}", method = RequestMethod.DELETE)
     public void deleteCompany(@PathVariable Long companyId) {
